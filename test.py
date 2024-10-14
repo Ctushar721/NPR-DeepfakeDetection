@@ -23,7 +23,7 @@ def seed_torch(seed=1029):
     torch.backends.cudnn.enabled = False
 seed_torch(100)
 DetectionTests = {
-                'ForenSynths': { 'dataroot'   : '/content/drive/MyDrive/NPR/dataset',
+                'ForenSynths': { 'dataroot'   : '/content/drive/MyDrive/LaDeDa/WildRF/test_males_2',
                                  'no_resize'  : False, # Due to the different shapes of images in the dataset, resizing is required during batch detection.
                                  'no_crop'    : True,
                                },
