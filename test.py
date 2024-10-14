@@ -23,7 +23,7 @@ def seed_torch(seed=1029):
     torch.backends.cudnn.enabled = False
 seed_torch(100)
 DetectionTests = {
-                'ForenSynths': { 'dataroot'   : '/opt/data/private/DeepfakeDetection/ForenSynths/',
+                'ForenSynths': { 'dataroot'   : '/content/drive/MyDrive/NPR/dataset',
                                  'no_resize'  : False, # Due to the different shapes of images in the dataset, resizing is required during batch detection.
                                  'no_crop'    : True,
                                },
@@ -55,7 +55,7 @@ model.load_state_dict(torch.load(opt.model_path, map_location='cpu'), strict=Tru
 model.cuda()
 model.eval()
 
-for testSet in DetectionTests.keys():
+for testSet in ['ForenSynths']: #DetectionTests.keys():
     dataroot = DetectionTests[testSet]['dataroot']
     printSet(testSet)
 
