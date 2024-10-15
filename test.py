@@ -51,7 +51,17 @@ print(f'Model_path {opt.model_path}')
 
 # get model
 model = resnet50(num_classes=1)
-model.load_state_dict(torch.load(opt.model_path, map_location='cpu'), strict=True)
+# model.load_state_dict(torch.load(opt.model_path, map_location='cpu'), strict=True)
+try:
+    model.load_state_dict(torch.load(opt.model_path, map_location='cpu'), strict=True)
+except:
+    from collections import OrderedDict
+    from copy import deepcopy
+    state_dict = torch.load(opt.model_path, map_location='cpu')['model']
+    pretrained_dict = OrderedDict()
+    for ki in state_dict.keys():
+        pretrained_dict[ki[7:]] = deepcopy(state_dict[ki])
+    model.load_state_dict(pretrained_dict, strict=True)
 model.cuda()
 model.eval()
 
